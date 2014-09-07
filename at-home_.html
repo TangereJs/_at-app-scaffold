@@ -1,0 +1,194 @@
+<!-- Import Polymer -->
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-input/paper-input.html">
+
+<!-- Define your custom element -->
+<polymer-element name="at-home" attributes="who">
+
+  <template>
+    <paper-input id="paper_input" label="Your name?" value="{{who}}" required floatinglabel></paper-input>
+    <span>Hello <strong>{{who}}</strong> :)</span>
+    <div vertical layout>
+      <div>Alpha</div>
+      <div flex>Beta (flex)</div>
+      <div>Gamma</div>
+    </div>
+    <br />
+    <br />
+    <hr />
+    1
+    <br />
+    2
+    <br />
+    3
+    <br />
+    4
+    <br />
+    5
+    <br />
+    6
+    <br />
+    7
+    <br />
+    8
+    <br />
+    9
+    <br />
+    ------------------------------
+    <br />
+    1
+    <br />
+    2
+    <br />
+    3
+    <br />
+    4
+    <br />
+    5
+    <br />
+    6
+    <br />
+    7
+    <br />
+    8
+    <br />
+    9
+    <br />
+    ------------------------------
+    <br />
+    1
+    <br />
+    2
+    <br />
+    3
+    <br />
+    4
+    <br />
+    5
+    <br />
+    6
+    <br />
+    7
+    <br />
+    8
+    <br />
+    9
+    <br />
+    ------------------------------
+    <br />
+    1
+    <br />
+    2
+    <br />
+    3
+    <br />
+    4
+    <br />
+    5
+    <br />
+    6
+    <br />
+    7
+    <br />
+    8
+    <br />
+    9
+    <br />
+    ------------------------------
+    <br />
+    1
+    <br />
+    2
+    <br />
+    3
+    <br />
+    4
+    <br />
+    5
+    <br />
+    6
+    <br />
+    7
+    <br />
+    8
+    <br />
+    9
+    <br />
+    ------------------------------
+    <br />
+    1
+    <br />
+    2
+    <br />
+    3
+    <br />
+    4
+    <br />
+    5
+    <br />
+    6
+    <br />
+    7
+    <br />
+    8
+    <br />
+    9
+    <br />
+    ------------------------------
+    <br />
+    1
+    <br />
+    2
+    <br />
+    3
+    <br />
+    4
+    <br />
+    5
+    <br />
+    6
+    <br />
+    7
+    <br />
+    8
+    <br />
+    9
+    <br />
+    ------------------------------
+    <br />
+    1
+    <br />
+    2
+    <br />
+    3
+    <br />
+    4
+    <br />
+    5
+    <br />
+    6
+    <br />
+    7
+    <br />
+    8
+    <br />
+    9
+    <br />
+    ------------------------------
+    <br />
+
+  </template>
+
+  <script>
+    Polymer('at-home', {
+      who: 'World',
+      ready: function () {
+
+      },
+      viewReady: function (context) {
+        context.appFrame.caption = "Home";
+      }
+    });
+  </script>
+
+</polymer-element>
