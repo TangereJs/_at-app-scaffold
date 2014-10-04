@@ -71,6 +71,10 @@ and `responsiveWidth` to change the layout of the scaffold.
       .hideMenuButton {
         display: none;
       }
+
+
+
+
     </style>
 
     <core-drawer-panel id="drawerPanel" narrow="{{narrow}}" showactionbutton="{{showactionbutton}}" responsivewidth="{{responsiveWidth}}" disableswipe>
@@ -85,7 +89,8 @@ and `responsiveWidth` to change the layout of the scaffold.
 
         <core-toolbar>
           <paper-icon-button id="backButton" icon="chevron-left" on-tap="{{backButtonTapped}}"></paper-icon-button>
-          <content select="[tool]"></content>
+          <div id="caption"><content select="[tool]"></content></div>
+          <div flex></div>
           <paper-icon-button id="menuButton" icon="menu" on-tap="{{menuButtonTapped}}"></paper-icon-button>
         </core-toolbar>
 
