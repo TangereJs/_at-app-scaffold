@@ -3,17 +3,11 @@
 <link rel="import" href="../paper-input/paper-input.html">
 
 <!-- Define your custom element -->
-<polymer-element name="at-home" attributes="who">
+<polymer-element name="demo-home" attributes="who">
 
   <template>
     <paper-input id="paper_input" label="Your name?" value="{{who}}" required floatinglabel></paper-input>
-    <span>Hello <strong>{{who}}</strong> :)</span>
-    <div vertical layout>
-      <div>Alpha</div>
-      <div flex>Beta (flex)</div>
-      <div>Gamma</div>
-    </div>
-    <br />
+    <div>Hello <strong>{{who}}</strong> :)</div>   
     <br />
     <hr />
     1
@@ -180,7 +174,7 @@
   </template>
 
   <script>
-    Polymer('at-home', {
+    Polymer('demo-home', {
       who: 'World',
       ready: function () {
 
