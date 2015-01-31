@@ -58,27 +58,47 @@
 
         #core_header_panel {
           background-color: rgb(255, 255, 255);
+          background-color: yellow;   
+          margin-bottom: 64px;
         }
 
         #core_toolbar {
           color: rgb(255, 255, 255);
           background-color: rgb(79, 125, 201);
         }
+        
+        [navigationfooter] {
+          padding: 4px;
+          background-color: red;
+          height: 100%;
+        }
 
         #core_menu {
           font-size: 16px;
+          padding:0;          
         }
       </style>
       <at-app-scaffold id="core_scaffold" enableback="{{$.router.enableBack}}">
         <core-header-panel mode="seamed" id="core_header_panel" navigation flex>
           <core-toolbar id="core_toolbar"></core-toolbar>
-          <core-menu valueattr="label" id="core_menu">
-            <paper-item label="List" icon="editor:format-align-justify" id="core_item3" on-tap="{{ golist }}" horizontal center layout></paper-item>
-            <paper-item label="Home" icon="home" id="core_item3" on-tap="{{ gohome }}" horizontal center layout></paper-item>
-          </core-menu>
+          <core-menu valueattr="label" id="core_menu" fit>
+            <paper-item icon="editor:format-align-justify" id="core_item3" on-tap="{{ golist }}" horizontal center layout>List</paper-item>
+            <paper-item icon="home" id="core_item3" on-tap="{{ gohome }}" horizontal center layout>Home</paper-item>
+            <paper-item icon="editor:format-align-justify" id="core_item3" on-tap="{{ golist }}" horizontal center layout>List</paper-item>
+            <paper-item icon="home" id="core_item3" on-tap="{{ gohome }}" horizontal center layout>Home</paper-item>
+            <paper-item icon="editor:format-align-justify" id="core_item3" on-tap="{{ golist }}" horizontal center layout>List</paper-item>
+            <paper-item icon="home" id="core_item3" on-tap="{{ gohome }}" horizontal center layout>Home</paper-item>
+            <paper-item icon="editor:format-align-justify" id="core_item3" on-tap="{{ golist }}" horizontal center layout>List</paper-item>
+            <paper-item icon="home" id="core_item3" on-tap="{{ gohome }}" horizontal center layout>Home</paper-item>
+            <paper-item icon="editor:format-align-justify" id="core_item3" on-tap="{{ golist }}" horizontal center layout>List</paper-item>
+            <paper-item icon="home" id="core_item3" on-tap="{{ gohome }}" horizontal center layout>Home</paper-item>
+            <paper-item icon="editor:format-align-justify" id="core_item3" on-tap="{{ golist }}" horizontal center layout>List</paper-item>
+            <paper-item icon="home" id="core_item3" on-tap="{{ gohome }}" horizontal center layout>Home</paper-item>
+          </core-menu>                    
         </core-header-panel>
+        <div navigationfooter>Footer</div>
         <div id="div" tool flex>{{$.router.caption}}</div>
-        <at-core-router id="router" caption="at-app" defaultview="at-app-scaffold/demo-home"></at-core-router>
+        <at-core-router id="router" caption="at-app" defaultview="at-app-scaffold/demo-home"></at-core-router>        
       </at-app-scaffold>
 
     </template>

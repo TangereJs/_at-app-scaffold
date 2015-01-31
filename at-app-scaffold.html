@@ -46,7 +46,6 @@ and `responsiveWidth` to change the layout of the scaffold.
       :host {
         display: block;
       }
-
       [drawer] {
         background-color: #fff;
         box-shadow: 1px 0 1px rgba(0, 0, 0, 0.1);
@@ -57,24 +56,24 @@ and `responsiveWidth` to change the layout of the scaffold.
         -ms-user-select: none;
         user-select: none;
       }
-
       [main] {
         height: 100%;
         background-color: #eee;
       }
-
       core-toolbar {
         background-color: #526E9C;
-        color: #fff;        
+        color: #fff;
       }
-
       .hideMenuButton {
         display: none;
       }
-
-
-
-
+      #navigationfooter {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 64px; 
+      }
     </style>
 
     <core-drawer-panel id="drawerPanel" narrow="{{narrow}}" showactionbutton="{{showactionbutton}}" responsivewidth="{{responsiveWidth}}" disableswipe>
@@ -82,14 +81,18 @@ and `responsiveWidth` to change the layout of the scaffold.
       <div vertical layout drawer>
 
         <content select="[navigation], nav"></content>
-
+        <div id="navigationfooter">
+          <content select="[navigationfooter]"></content>
+        </div>
       </div>
 
       <core-header-panel main mode="{{mode}}">
 
         <core-toolbar>
           <paper-icon-button id="backButton" icon="chevron-left" on-tap="{{backButtonTapped}}"></paper-icon-button>
-          <div id="caption"><content select="[tool]"></content></div>
+          <div id="caption">
+            <content select="[tool]"></content>
+          </div>
           <div flex></div>
           <paper-icon-button id="menuButton" icon="menu" on-tap="{{menuButtonTapped}}"></paper-icon-button>
         </core-toolbar>
@@ -102,13 +105,18 @@ and `responsiveWidth` to change the layout of the scaffold.
 
   </template>
   <script>
-
     Polymer('at-app-scaffold', {
 
       publish: {
         responsiveWidth: '940px',
-        mode: { value: 'standard', reflect: true },
-        enableBack: { value: false, reflect: true }
+        mode: {
+          value: 'standard',
+          reflect: true
+        },
+        enableBack: {
+          value: false,
+          reflect: true
+        }
       },
 
       narrowChanged: function () {
@@ -127,7 +135,7 @@ and `responsiveWidth` to change the layout of the scaffold.
       },
       updateButtons: function () {
         this.$.backButton.className = (this.backButtonActive() ? "" : "hideMenuButton");
-        this.$.menuButton.className = (this.narrow  ? "" : "hideMenuButton");
+        this.$.menuButton.className = (this.narrow ? "" : "hideMenuButton");
       },
 
       backButtonTapped: function () {
@@ -138,22 +146,21 @@ and `responsiveWidth` to change the layout of the scaffold.
       },
 
       /**
-        * Open the drawer panel
-        * @method openDrawer
-        */
+       * Open the drawer panel
+       * @method openDrawer
+       */
       openDrawer: function () {
         this.$.drawerPanel.openDrawer();
       },
 
       /**
-        * Close the drawer panel
-        * @method closeDrawer
-        */
+       * Close the drawer panel
+       * @method closeDrawer
+       */
       closeDrawer: function () {
         this.$.drawerPanel.closeDrawer();
       }
 
     });
-
   </script>
 </polymer-element>
