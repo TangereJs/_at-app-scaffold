@@ -1,0 +1,114 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../layout/layout.html">
+<link rel="import" href="../core-media-query/core-media-query.html">
+
+<dom-module id="at-app-drawer">
+  <style>
+    :host {
+      position: fixed;
+      height: 100%;
+      z-index: 100;
+      top: 0;
+      left: 0;
+    }
+    #content {
+      width: 265px;
+      height: 100%;
+      z-index: 3;
+      background-color: #EEE;
+      transition: all .4s ease;
+      -webkit-overflow-scrolling: touch;
+      -webkit-transform: translateZ(0);
+    }
+    #content.hide {
+      left: -315px;
+    }
+    .content-container {
+      overflow-y: auto;
+    }
+    .header {
+      height: 60px;
+    }
+    #mask {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: black;
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      z-index: 2;
+      -webkit-transition: opacity 1s ease-in-out;
+      -moz-transition: opacity 1s ease-in-out;
+      -ms-transition: opacity 1s ease-in-out;
+      -o-transition: opacity 1s ease-in-out;
+      transition: opacity 1s ease-in-out;
+    }
+  </style>
+
+  <template>
+    <div id="mask" on-tap="toggle"></div>
+    <div id="content" class="layout vertical fit">
+      <DIV class="header" class="layout vertical">
+        <content select=".sidebar-header"></content>
+      </DIV>
+      <div class="content-container layout vertical flex">
+        <DIV class="content">
+          <content select=".sidebar-content"></content>
+        </DIV>
+      </div>
+    </div>
+  </template>
+</dom-module>
+<script>
+  Polymer({
+    is: 'at-app-drawer',
+    properties: {
+      active: {
+        type: Boolean,
+        value: true,
+        reflectToAttribute: true,
+        notify: true
+      },
+      desktop: {
+        type: Boolean,
+        value: true,
+        reflectToAttribute: true,
+        notify: true
+      }
+
+    },
+    controller: null,
+    toggle: function () {
+      this.fire('sidebar-close', true);
+    },
+    ready: function () {
+      
+    },
+    open: function () {
+      if (!this.desktop) { // show mask when bar is shown as overlay
+        this.$.mask.style.display = 'block';
+        this.$.mask.style.opacity = 0.4;
+        document.body.classList.add('noscroll');
+      }
+      this.$.content.classList.remove("hide");
+      this.active = true;
+    },
+    close: function () {      
+      this.$.content.classList.add("hide");
+      this.$.mask.style.display = 'none';
+      this.$.mask.style.opacity = 0;
+      this.active = false;
+      document.body.classList.remove('noscroll');
+
+    },
+    attached: function () {      
+      var content = this.$.content;
+      var mask = this.$.mask;
+    }
+
+  });
+</script>
+
