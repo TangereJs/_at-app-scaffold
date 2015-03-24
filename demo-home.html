@@ -1,0 +1,64 @@
+<!-- Import Polymer -->
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../at-form-input/at-form-input.html">
+
+<!-- Define your custom element -->
+<dom-module id="demo-home">
+
+  <template>    
+    <at-form-input id="field" value="{{who}}" ></at-form-input>
+    <div>Hello <strong>{{who}}</strong> :)</div>
+    <br />
+    <hr />1
+    <br />2
+    <br />3
+    <br />4
+    <br />5
+    <br />6
+    <br />7
+    <br />8
+    <br />9
+    <br />------------------------------
+    <br />1
+    <br />2
+    <br />3
+    <br />4
+    <br />5
+    <br />6
+    <br />7
+    <br />8
+    <br />9
+    <br />------------------------------
+    <br />1
+    <br />2
+    <br />3
+    <br />4
+    <br />5
+    <br />6
+    <br />7
+    <br />8
+    <br />9
+
+
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'demo-home',
+    properties: {
+      who: {
+        type: String,
+        notify: true,
+        value: 'World'
+      }
+    },
+    ready: function () {
+
+    },
+    viewReady: function (context) {
+      context.appFrame.caption = "Home";
+    }
+  });
+</script>
+
