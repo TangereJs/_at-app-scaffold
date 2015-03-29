@@ -15,16 +15,13 @@
     #hamburger {
       display: inline-block;
     }
-    .mainwrapper {
-      color: cornflowerblue;
-      margin-top: 100px;
+    .mainwrapper {      
+      padding-top: 100px;
     }
     .bar {
       width: 100%;
       padding: 16px !important;
       height: 60px;
-      color: white;
-      background-color: skyblue;
       z-index: 1;
       top: 0;
       left: 0;
@@ -56,7 +53,7 @@
         MENU
       </div>
     </div>
-    <div id="mainwrapper" class="mainwrapper">
+    <div id="mainwrapper" class="mainwrapper" on-router-navigate="routerNavigate">
       <content select=".main"></content>
     </div>
     <at-app-drawer id="sidebar" active$="{{sidebar}}" desktop$="{{desktop}}" on-sidebar-close="sidebarClose">
@@ -96,7 +93,7 @@
     },
 
     mqChanged: function () {
-      console.log("mqChanged");
+      //console.log("mqChanged");
       if (this.desktop == this.$.mq.queryMatches) return;
       this.desktop = this.$.mq.queryMatches;
     },
@@ -104,7 +101,7 @@
       this.sidebar = false;
     },
     sidebarChanged: function () {
-      console.log("sidebarChanged");
+      //console.log("sidebarChanged");
       if (this.sidebar) {
         if (this.desktop) {
           this.$.bar.classList.add('sidebar');
@@ -121,13 +118,13 @@
       }
     },
     desktopChanged: function () {
-      console.log("desktopChanged");
+      //console.log("desktopChanged");
       this.parentElement.classList.toggle('desktop', this.desktop);
       this.$.menu.hide = this.desktop;
       this.$.menu.style.display = this.desktop ? "none" : "block";
 
       if (this.desktop) {
-        console.log("open sidebar");
+        //console.log("open sidebar");
         if (this.sidebar) { // close side bar to ensure mask is removed
           this.sidebar = false;
           this.$.sidebar.close();
@@ -135,7 +132,7 @@
         this.sidebar = true;
         this.$.sidebar.open();
       } else {
-        console.log("close sidebar");
+        //console.log("close sidebar");
         this.sidebar = false;
         this.$.sidebar.close();
       }
@@ -143,11 +140,16 @@
     menuClick: function () {
       this.sidebar = !this.sidebar;
     },
+    routerNavigate: function(e) {      
+      if(!this.desktop) this.sidebar =  false; // close sidebar before view changes
+    },
     attached: function () {
-
       this.removeAttribute('unresolved');
     },
-    ready: function () {}
+    ready: function () {
+      this.router =  Polymer.dom(this).querySelector("#router");
+      
+    }
   });
 </script>
 

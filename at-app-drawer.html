@@ -78,9 +78,7 @@
         reflectToAttribute: true,
         notify: true
       }
-
     },
-    controller: null,
     toggle: function () {
       this.fire('sidebar-close', true);
     },
@@ -102,11 +100,13 @@
       this.$.mask.style.opacity = 0;
       this.active = false;
       document.body.classList.remove('noscroll');
-
     },
     attached: function () {      
       var content = this.$.content;
       var mask = this.$.mask;
+    },
+    navigate: function() {
+      debugger;
     }
 
   });
