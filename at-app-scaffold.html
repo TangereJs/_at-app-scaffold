@@ -2,6 +2,7 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../layout/layout.html">
 <link rel="import" href="../core-media-query/core-media-query.html">
+<link rel="import" href="../at-core-busy/at-core-busy.html">
 <link rel="import" href="../at-core-theme/at-core-theme.html">
 <link rel="import" href="at-app-drawer.html">
 
@@ -11,6 +12,7 @@
     .bar.sidebar {
       transition: margin-left .3s ease-in-out;
       margin-left: 265px;
+      width: calc(100% - 265px);
     }
     #hamburger {
       display: inline-block;
@@ -43,13 +45,18 @@
     <div id="bar" class="bar layout horizontal center">
       <div class="layout horizontal center">
         <!--<paper-icon-button id="hamburger" on-click="{{menuClick}}" icon="menu"></paper-icon-button>-->HAMBURGER
-      </div>
+      </div>  
       <div class="layout horizontal flex">
         <header id="internalheader">
           <div class="layout vertical center">{{caption}}</div>
         </header>
       </div>
-      <div id="menu" on-tap="menuClick">
+      <div id="busy">
+        <div class="layout vertical center ">
+          <at-core-busy></at-core-busy>
+        </div>
+      </div>
+      <div id="menu" on-tap="menuClick" class="layout horizontal">
         MENU
       </div>
     </div>
