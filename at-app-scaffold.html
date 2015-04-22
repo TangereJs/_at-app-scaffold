@@ -4,6 +4,7 @@
 <link rel="import" href="../core-media-query/core-media-query.html">
 <link rel="import" href="../at-core-signals/at-core-signals.html">
 <link rel="import" href="../at-core-busy/at-core-busy.html">
+<link rel="import" href="../at-carbon-icon/at-carbon-icon.html">
 <link rel="import" href="../at-core-theme/at-core-theme.html">
 <link rel="import" href="at-app-drawer.html">
 
@@ -21,6 +22,16 @@
     .mainwrapper {      
       padding-top: 60px;
     }
+
+    #menu {
+      cursor:pointer;
+    }
+
+    #back {
+      cursor:pointer;
+      margin-right:8px;
+    }
+
     .bar {
       width: 100%;
       padding: 16px !important;
@@ -42,11 +53,11 @@
   </style>
   <template>
     <at-core-theme></at-core-theme>
-    <at-core-signals on-before-navigate="beforeNavigate"></at-core-signals>
+    <at-core-signals on-before-navigate="beforeNavigate" on-navigate-back-status="navigateBackStatus" on-app-caption="appCaption"></at-core-signals>
     <core-media-query id="mq" query="min-width: 1025px" on-query-matches-changed="mqChanged"></core-media-query>
     <div id="bar" class="bar layout horizontal center">
-      <div class="layout horizontal center">
-        <!--<paper-icon-button id="hamburger" on-click="{{menuClick}}" icon="menu"></paper-icon-button>-->HAMBURGER
+      <div class="layout horizontal center" id="back" on-tap="backClick">
+        <at-carbon-icon icon="now:arrow-left"></at-carbon-icon>
       </div>  
       <div class="layout horizontal flex">
         <header id="internalheader">
@@ -59,7 +70,7 @@
         </div>
       </div>
       <div id="menu" on-tap="menuClick" class="layout horizontal">
-        MENU
+        <at-carbon-icon icon="now:menu"></at-carbon-icon>
       </div>
     </div>
     <div id="mainwrapper" class="mainwrapper" on-router-navigate="routerNavigate">
@@ -97,7 +108,7 @@
       },
       caption: {
         type: String,
-        value: '',
+        value: 'adenin Mobility Portal',
         notify: true
       }
     },
@@ -147,11 +158,20 @@
         this.$.sidebar.close();
       }
     },
+    backClick: function () {
+      window.history.back();
+    },
+    navigateBackStatus: function(e) {      
+      this.$.back.style.display = e.detail ? "block" : "none"
+    },
     menuClick: function () {
       this.sidebar = !this.sidebar;
     },
     beforeNavigate: function(e) {      
       if(!this.desktop) this.sidebar =  false; // close sidebar before view changes
+    },
+    appCaption: function(e) {
+      this.caption = e.detail;
     },
     attached: function () {
       this.removeAttribute('unresolved');
