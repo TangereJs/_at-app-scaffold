@@ -2,6 +2,7 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../layout/layout.html">
 <link rel="import" href="../core-media-query/core-media-query.html">
+<link rel="import" href="../at-core-signals/at-core-signals.html">
 <link rel="import" href="../at-core-busy/at-core-busy.html">
 <link rel="import" href="../at-core-theme/at-core-theme.html">
 <link rel="import" href="at-app-drawer.html">
@@ -41,6 +42,7 @@
   </style>
   <template>
     <at-core-theme></at-core-theme>
+    <at-core-signals on-before-navigate="beforeNavigate"></at-core-signals>
     <core-media-query id="mq" query="min-width: 1025px" on-query-matches-changed="mqChanged"></core-media-query>
     <div id="bar" class="bar layout horizontal center">
       <div class="layout horizontal center">
@@ -70,7 +72,7 @@
       <DIV class="sidebar-content">
         <content select=".sidebar-content"></content>
       </DIV>
-    </app-drawer>
+    </at-app-drawer>
   </template>
 </dom-module>
 
@@ -148,7 +150,7 @@
     menuClick: function () {
       this.sidebar = !this.sidebar;
     },
-    routerNavigate: function(e) {      
+    beforeNavigate: function(e) {      
       if(!this.desktop) this.sidebar =  false; // close sidebar before view changes
     },
     attached: function () {
