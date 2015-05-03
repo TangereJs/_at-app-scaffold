@@ -52,6 +52,10 @@
       -webkit-overflow-scrolling: touch;
       margin: 0;
     }
+    .caption {
+      font-size: 1.75rem;
+      font-weight: lighter;
+    }
   </style>
   <template>
     <at-core-theme></at-core-theme>
@@ -63,7 +67,7 @@
       </div>  
       <div class="layout horizontal flex">
         <header id="internalheader">
-          <div class="layout vertical center">{{caption}}</div>
+          <div class="layout vertical center caption">{{caption}}</div>
         </header>
       </div>
       <div id="busy">
