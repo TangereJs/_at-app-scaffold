@@ -55,6 +55,10 @@
     .caption {
       font-size: 1.75rem;
       font-weight: lighter;
+      overflow: hidden;
+      text-overflow: ellipsis; 
+      white-space: nowrap;
+      width: 100%;
     }
   </style>
   <template>
@@ -67,7 +71,7 @@
       </div>  
       <div class="layout horizontal flex">
         <header id="internalheader">
-          <div class="layout vertical center caption">{{caption}}</div>
+          <div class="layout vertical center"><div class="caption">{{caption}}</div></div>
         </header>
       </div>
       <div id="busy">
