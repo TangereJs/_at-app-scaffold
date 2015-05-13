@@ -1,4 +1,3 @@
-
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../layout/layout.html">
 <link rel="import" href="../core-media-query/core-media-query.html">
@@ -19,21 +18,18 @@
     #hamburger {
       display: inline-block;
     }
-    .mainwrapper {      
+    .mainwrapper {
       padding-top: 60px;
     }
-
     #menu {
-      cursor:pointer;
-      width:24px;
+      cursor: pointer;
+      width: 24px;
     }
-
     #back {
-      cursor:pointer;
-      width:24px;
-      margin-right:8px;
+      cursor: pointer;
+      width: 24px;
+      margin-right: 8px;
     }
-
     .bar {
       width: 100%;
       padding: 16px !important;
@@ -42,6 +38,9 @@
       top: 0;
       left: 0;
       position: fixed;
+    }
+    #captionwrapper {
+      margin-right: 80px;
     }
     .bar a {
       text-decoration: none;
@@ -56,9 +55,19 @@
       font-size: 1.75rem;
       font-weight: lighter;
       overflow: hidden;
-      text-overflow: ellipsis; 
+      text-overflow: ellipsis;
       white-space: nowrap;
       width: 100%;
+    }
+    #menucontainer {
+      position: fixed;
+      top: 18px;
+      right: 0;
+      width: 72px;
+      color: white;
+      z-index: 1000;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
     }
   </style>
   <template>
@@ -68,12 +77,16 @@
     <div id="bar" class="bar layout horizontal center">
       <div class="layout horizontal center" id="back" on-tap="backClick">
         <at-carbon-icon icon="now:arrow-left"></at-carbon-icon>
-      </div>  
-      <div class="layout horizontal flex">
+      </div>
+      <div class="layout horizontal flex" id="captionwrapper">
         <header id="internalheader">
-          <div class="layout vertical center"><div class="caption">{{caption}}</div></div>
+          <div class="layout vertical center">
+            <div class="caption">{{caption}}</div>
+          </div>
         </header>
       </div>
+    </div>
+    <div id="menucontainer" class="layout horizontal">
       <div id="busy">
         <div class="layout vertical center ">
           <at-core-busy></at-core-busy>
@@ -87,12 +100,12 @@
       <content select=".main"></content>
     </div>
     <at-app-drawer id="sidebar" active$="{{sidebar}}" desktop$="{{desktop}}" on-sidebar-close="sidebarClose">
-      <DIV class="sidebar-header">
+      <div class="sidebar-header">
         <content select=".sidebar-header"></content>
-      </DIV>
-      <DIV class="sidebar-content">
+      </div>
+      <div class="sidebar-content">
         <content select=".sidebar-content"></content>
-      </DIV>
+      </div>
     </at-app-drawer>
   </template>
 </dom-module>
@@ -171,24 +184,24 @@
     backClick: function () {
       window.history.back();
     },
-    navigateBackStatus: function(e) {      
+    navigateBackStatus: function (e) {
       this.$.back.style.display = e.detail ? "block" : "none"
     },
     menuClick: function () {
       this.sidebar = !this.sidebar;
     },
-    beforeNavigate: function(e) {      
-      if(!this.desktop) this.sidebar =  false; // close sidebar before view changes
+    beforeNavigate: function (e) {
+      if (!this.desktop) this.sidebar = false; // close sidebar before view changes
     },
-    appCaption: function(e) {
+    appCaption: function (e) {
       this.caption = e.detail;
     },
     attached: function () {
       this.removeAttribute('unresolved');
     },
     ready: function () {
-      this.router =  Polymer.dom(this).querySelector("#router");
-      
+      this.router = Polymer.dom(this).querySelector("#router");
+
     }
   });
 </script>
