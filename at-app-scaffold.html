@@ -198,6 +198,7 @@
     },
     appColor: function (e) {
       var color = e.detail || "lightBlue";
+      if (this.sidebar) color = color + " sidebar";
       this.$.bar.className = "bar layout horizontal center inverted " + color;
     },
     attached: function () {
