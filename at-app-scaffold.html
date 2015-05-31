@@ -72,7 +72,7 @@
   </style>
   <template>
     <at-core-theme></at-core-theme>
-    <at-core-signals on-before-navigate="beforeNavigate" on-navigate-back-status="navigateBackStatus" on-app-caption="appCaption"></at-core-signals>
+    <at-core-signals on-before-navigate="beforeNavigate" on-navigate-back-status="navigateBackStatus" on-app-caption="appCaption" on-app-color="appColor"></at-core-signals>
     <core-media-query id="mq" query="min-width: 1025px" on-query-matches-changed="mqChanged"></core-media-query>
     <div id="bar" class="bar layout horizontal center">
       <div class="layout horizontal center" id="back" on-tap="backClick">
@@ -195,6 +195,10 @@
     },
     appCaption: function (e) {
       this.caption = e.detail;
+    },
+    appColor: function (e) {
+      var color = e.detail || "lightBlue";
+      this.$.bar.className = "bar layout horizontal center inverted " + color;
     },
     attached: function () {
       this.removeAttribute('unresolved');
