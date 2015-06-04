@@ -50,6 +50,18 @@
       overflow: auto;
       -webkit-overflow-scrolling: touch;
       margin: 0;
+      margin-bottom: 48px;
+    }
+    .sidebar-footer {
+      display: block;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      background-color:#ffffff;
+      border-top: 1px solid rgba(0, 0, 0, 0.16);
+      height: 48px;
+      margin: 0;
+      padding: 12px 8px 0px 8px;
+      overflow:hidden;
     }
     .caption {
       font-size: 1.75rem;
@@ -105,6 +117,9 @@
       </div>
       <div class="sidebar-content">
         <content select=".sidebar-content"></content>
+      </div>
+      <div class="sidebar-footer">
+        <content select=".sidebar-footer"></content>
       </div>
     </at-app-drawer>
   </template>
