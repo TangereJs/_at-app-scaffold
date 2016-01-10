@@ -161,6 +161,7 @@
     },
     sidebarChanged: function () {
       //console.log("sidebarChanged");
+	  this.$.sidebar.desktop = this.desktop;
       if (this.sidebar) {
         if (this.desktop) {
           this.$.bar.classList.add('sidebar');
@@ -179,6 +180,7 @@
     desktopChanged: function () {
       //console.log("desktopChanged");
       this.parentElement.classList.toggle('desktop', this.desktop);
+	  this.$.sidebar.desktop = this.desktop;
       this.$.menu.hide = this.desktop;
       this.$.menu.style.display = this.desktop ? "none" : "block";
 
@@ -208,8 +210,9 @@
     beforeNavigate: function (e) {
       if (!this.desktop) this.sidebar = false; // close sidebar before view changes
     },
-    appCaption: function (e) {
+    appCaption: function (e) {      
       this.caption = e.detail;
+      document.title = this.caption;
     },
     appColor: function (e) {
       var color = e.detail || "lightBlue";
