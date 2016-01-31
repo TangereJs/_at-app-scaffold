@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../at-theme/at-theme.html">
 <link rel="import" href="../layout/layout.html">
 <link rel="import" href="../core-media-query/core-media-query.html">
 <link rel="import" href="../at-core-signals/at-core-signals.html">
@@ -7,111 +8,150 @@
 <link rel="import" href="../at-core-theme/at-core-theme.html">
 <link rel="import" href="at-app-drawer.html">
 
-<dom-module id="at-app-scaffold">
-  <style>
-    .mainwrapper.sidebar,
-    .bar.sidebar {
-      transition: margin-left .3s ease-in-out;
-      margin-left: 265px;
-      width: calc(100% - 265px);
-    }
-    #hamburger {
-      display: inline-block;
-    }
-    .mainwrapper {
-      padding-top: 60px;
-    }
-    #menu {
-      cursor: pointer;
-      width: 24px;
-    }
-    #back {
-      cursor: pointer;
-      width: 24px;
-      margin-right: 8px;
-    }
-    #internalheader {
-      min-width: 0;
-    }
-    .bar {
-      width: 100%;
-      padding: 16px !important;
-      height: 60px;
-      z-index: 100;
-      top: 0;
-      left: 0;
-      position: fixed;
-    }
-    #captionwrapper {
-      margin-right: 80px;    
-      min-width: 0; 
-    }
-    .bar a {
-      text-decoration: none;
-    }
-    .sidebar-content {
-      display: block;
-      overflow: auto;
-      -webkit-overflow-scrolling: touch;
-      margin: 0;
-      margin-bottom: 48px;
-    }
-    .sidebar-footer {
-      display: block;
-      overflow: auto;
-      -webkit-overflow-scrolling: touch;
-      background-color:#ffffff;
-      border-top: 1px solid rgba(0, 0, 0, 0.16);
-      border-right: 1px solid rgba(0, 0, 0, 0.16);
-      height: 48px;
-      margin: 0;
-      padding: 12px 8px 0px 8px;
-      overflow:hidden;
-    }
-    .caption {
-      font-size: 1.75rem;
-      font-weight: lighter;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      width: 100%;
-    }
-    #menucontainer {
-      position: fixed;
-      top: 18px;
-      right: 0;
-      width: 72px;
-      color: white;
-      z-index: 1000;
-      transform: translateZ(0);
-      -webkit-transform: translateZ(0);
-    }
-  </style>
+<dom-module id="at-app-scaffold">  
   <template>
+    <style>
+      
+      .mainwrapper.sidebar,
+      .bar.sidebar {
+        transition: margin-left .3s ease-in-out;
+        margin-left: 265px;
+        width: calc(100% - 265px);
+      }
+
+      #hamburger {
+        display: inline-block;
+      }
+
+      .mainwrapper {
+        padding-top: 60px;
+      }
+
+      #bar {
+        @apply(--layout-horizontal);
+        width: 100%;        
+        height: 60px;
+        z-index: 100;
+        padding-left: 4px;
+        top: 0;
+        left: 0;
+        position: fixed;
+      }
+
+      .bar a {
+        text-decoration: none;
+      }
+
+      .sidebar-content {
+        display: block;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 0;
+        margin-bottom: 48px;
+      }
+
+      .sidebar-footer {
+        display: block;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+        background-color: #ffffff;
+        border-top: 1px solid rgba(0, 0, 0, 0.16);
+        border-right: 1px solid rgba(0, 0, 0, 0.16);
+        height: 48px;
+        margin: 0;
+        padding: 12px 8px 0px 8px;
+        overflow: hidden;
+      }
+            
+      #caption {
+        @apply(--layout-flex);
+        @apply(--layout-center-center);        
+        min-width: 0;
+        font-size: 24px;
+        font-weight: 300;
+        line-height:24px;        
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+        padding: 16px 16px 16px 4px;
+      }
+
+      #back {        
+        @apply(--layout-center-center);
+        cursor: pointer;
+        padding: 16px 12px 16px 12px
+      }
+
+      #back at-carbon-icon {
+        top: -2px;
+        width: 30px;
+        height: 30px;
+      }
+
+      #back:active {
+        color: var(--at-active-background-color);        
+        transition: all 0.1s ease;
+      }
+
+      #back:active at-carbon-icon {
+        padding: 2px;
+        transition: all 0.1s ease;
+      }
+
+
+      #menucontainer {
+        @apply(--layout-horizontal);        
+        width: 72px;
+        color: white;
+        z-index: 1000;
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+      }
+
+      #busy {
+        position: relative; 
+        top: 16px;
+      }
+
+      #menu {
+        @apply(--layout-center-center);
+        cursor: pointer;
+        padding: 16px 12px 16px 12px
+      }
+
+      #menu:active {
+        color: var(--at-active-background-color);        
+        transition: all 0.1s ease;
+      }
+
+      #menu:active at-carbon-icon {
+        padding: 2px;
+        transition: all 0.1s ease;
+      }
+    </style>
+
     <at-core-theme></at-core-theme>
     <at-core-signals on-before-navigate="beforeNavigate" on-navigate-back-status="navigateBackStatus" on-app-caption="appCaption" on-app-color="appColor"></at-core-signals>
     <core-media-query id="mq" query="min-width: 1025px" on-query-matches-changed="mqChanged"></core-media-query>
-    <div id="bar" class="bar layout horizontal center">
-      <div class="layout horizontal center" id="back" on-tap="backClick">
+
+    <div id="bar" class="bar">
+      <div id="back" on-tap="backClick">
         <at-carbon-icon icon="now:arrow-left"></at-carbon-icon>
       </div>
-      <div class="layout horizontal flex" id="captionwrapper">
-        <header id="internalheader">
-          <div class="layout vertical center">
-            <div class="caption">{{caption}}</div>
-          </div>
-        </header>
+      <div id="caption">
+        {{caption}}
       </div>
-    </div>
-    <div id="menucontainer" class="layout horizontal">
-      <div id="busy">
-        <div class="layout vertical center ">
-          <at-core-busy></at-core-busy>
+
+      <div id="menucontainer" class="layout horizontal">
+        <div id="busy">          
+            <at-core-busy></at-core-busy>          
+        </div>
+        <div id="menu" on-tap="menuClick">
+          <at-carbon-icon icon="now:menu"></at-carbon-icon>
         </div>
       </div>
-      <div id="menu" on-tap="menuClick" class="layout horizontal">
-        <at-carbon-icon icon="now:menu"></at-carbon-icon>
-      </div>
+
     </div>
     <div id="mainwrapper" class="mainwrapper" on-router-navigate="routerNavigate">
       <content select=".main"></content>
@@ -132,8 +172,7 @@
 
 <script>
   Polymer({
-    is: 'at-app-scaffold',
-    _scopeCssViaAttr: true,
+    is: 'at-app-scaffold',    
     properties: {
       desktop: {
         type: Boolean,
@@ -167,18 +206,18 @@
     sidebarChanged: function () {
       //console.log("sidebarChanged");
 	  this.$.sidebar.desktop = this.desktop;
-      if (this.sidebar) {
+	  if (this.sidebar) {	    
         if (this.desktop) {
-          this.$.bar.classList.add('sidebar');
+          Polymer.dom(this.$.bar).classList.add('sidebar');
           this.$.mainwrapper.classList.add('sidebar');
         } else {
-          this.$.bar.classList.remove('sidebar');
+          Polymer.dom(this.$.bar).classList.remove('sidebar');
           this.$.mainwrapper.classList.remove('sidebar');
         }
         this.$.sidebar.open();
       } else {
         this.$.sidebar.close();
-        this.$.bar.classList.remove('sidebar');
+        Polymer.dom(this.$.bar).classList.remove('sidebar');
         this.$.mainwrapper.classList.remove('sidebar');
       }
     },
@@ -221,8 +260,8 @@
     },
     appColor: function (e) {
       var color = e.detail || "lightBlue";
-      if (this.sidebar) color = color + " sidebar";
-      this.$.bar.className = "bar layout horizontal center inverted " + color;
+      if (this.sidebar) color = color + " sidebar";      
+      Polymer.dom(this.$.bar).className = "bar layout horizontal center inverted " + color;
     },
     attached: function () {
       this.removeAttribute('unresolved');
