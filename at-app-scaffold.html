@@ -12,11 +12,16 @@
   <template>
     <style>
       
-      .mainwrapper.sidebar,
-      .bar.sidebar {
+      .mainwrapper.sidebar {
         transition: margin-left .3s ease-in-out;
         margin-left: 265px;
         width: calc(100% - 265px);
+      }
+            
+      .bar.sidebar {
+        transition: margin-left .3s ease-in-out;
+        margin-left: 265px;
+        width: calc(100% - 265px) !important;
       }
 
       #hamburger {
@@ -143,7 +148,7 @@
         {{caption}}
       </div>
 
-      <div id="menucontainer" class="layout horizontal">
+      <div id="menucontainer">
         <div id="busy">          
             <at-core-busy></at-core-busy>          
         </div>
@@ -224,7 +229,7 @@
     desktopChanged: function () {
       //console.log("desktopChanged");
       this.parentElement.classList.toggle('desktop', this.desktop);
-	  this.$.sidebar.desktop = this.desktop;
+	    this.$.sidebar.desktop = this.desktop;
       this.$.menu.hide = this.desktop;
       this.$.menu.style.display = this.desktop ? "none" : "block";
 
