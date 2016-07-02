@@ -3,53 +3,58 @@
 <link rel="import" href="../core-media-query/core-media-query.html">
 
 <dom-module id="at-app-drawer">
-  <style>
-    :host {
-      position: fixed;
-      height: 100%;
-      z-index: 100;
-      top: 0;
-      left: 0;
-    }
-    #content {
-      width: 265px;
-      height: 100%;
-      z-index: 3;
-      background-color: #EEE;
-      transition: left .3s ease;
-      -webkit-overflow-scrolling: touch;
-      -webkit-transform: translateZ(0);
-    }
-    #content.hide {
-      left: -315px;
-    }
-    .content-container {
-      overflow-y: auto;
-      border-right: 1px solid rgba(0, 0, 0, 0.16);
-    }
-    .header {
-      height: 60px;
-    }
-    #mask {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: black;
-      -webkit-transform: translate3d(0, 0, 0);
-      transform: translate3d(0, 0, 0);
-      z-index: 2;
-      -webkit-transition: opacity 0.3s ease-in-out;
-      -moz-transition: opacity 0.3s ease-in-out;
-      -ms-transition: opacity 0.3s ease-in-out;
-      -o-transition: opacity 0.3s ease-in-out;
-      transition: opacity 0.3s ease-in-out;
-    }
-  </style>
-
   <template>
+    <style>
+      :host {
+        position: fixed;
+        height: 100%;
+        z-index: 100;
+        top: 0;
+        left: 0;
+      }
+
+      #content {
+        width: 265px;
+        height: 100%;
+        z-index: 3;
+        background-color: #EEE;
+        transition: left .3s ease;
+        -webkit-overflow-scrolling: touch;
+        -webkit-transform: translateZ(0);
+      }
+
+        #content.hide {
+          left: -315px;
+        }
+
+      .content-container {
+        overflow-y: auto;
+        border-right: 1px solid rgba(0, 0, 0, 0.16);
+      }
+
+      .header {
+        height: 60px;
+      }
+
+      #mask {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: black;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        z-index: 2;
+        -webkit-transition: opacity 0.3s ease-in-out;
+        -moz-transition: opacity 0.3s ease-in-out;
+        -ms-transition: opacity 0.3s ease-in-out;
+        -o-transition: opacity 0.3s ease-in-out;
+        transition: opacity 0.3s ease-in-out;
+      }
+    </style>
+
     <div id="mask" on-tap="toggle"></div>
     <div id="content" class="layout vertical fit">
       <DIV class="header" class="layout vertical">
