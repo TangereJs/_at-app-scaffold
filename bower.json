@@ -1,7 +1,7 @@
 {
   "name": "at-app-scaffold",
   "private": true,
-  "version": "1.0.0.106",
+  "version": "1.0.0.153",
   "dependencies": {
     "polymer": "Polymer/polymer#master"
   }

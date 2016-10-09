@@ -5,13 +5,14 @@
 <link rel="import" href="../at-core-signals/at-core-signals.html">
 <link rel="import" href="../at-core-busy/at-core-busy.html">
 <link rel="import" href="../at-carbon-icon/at-carbon-icon.html">
+<link rel="import" href="../at-core-style-classes/at-core-style-classes.html">
 <link rel="import" href="../at-core-theme/at-core-theme.html">
 <link rel="import" href="at-app-drawer.html">
 
 <dom-module id="at-app-scaffold">  
   <template>
-    <style>
-      
+    <style include="at-core-style-classes"></style>
+    <style>      
       .mainwrapper.sidebar {
         transition: margin-left .3s ease-in-out;
         margin-left: 265px;
@@ -41,6 +42,7 @@
         top: 0;
         left: 0;
         position: fixed;
+        transition: background-color 0.5s ease;
       }
 
       .bar a {
@@ -197,7 +199,17 @@
         type: String,
         value: 'adenin Mobility Portal',
         notify: true
+      },
+      barColor: {
+        type: String,
+        value: "lightBlue",
+        observer: "barColorChanged"
       }
+    },
+
+    barColorChanged: function (value, old) {      
+      if(old !== undefined) Polymer.dom(this.$.bar).classList.toggle("background-" + old,false);
+      Polymer.dom(this.$.bar).classList.toggle("background-" + value, true);        
     },
 
     mqChanged: function () {
@@ -264,16 +276,14 @@
       document.title = this.caption;
     },
     appColor: function (e) {
-      var color = e.detail || "lightBlue";
-      if (this.sidebar) color = color + " sidebar";      
-      Polymer.dom(this.$.bar).className = "bar layout horizontal center inverted " + color;
+      var color = e.detail || "lightBlue";     
+      this.barColor = color;      
     },
     attached: function () {
       this.removeAttribute('unresolved');
     },
-    ready: function () {
-      this.router = Polymer.dom(this).querySelector("#router");
-
+    ready: function () {      
+      this.router = Polymer.dom(this).querySelector("#router");      
     }
   });
 </script>
