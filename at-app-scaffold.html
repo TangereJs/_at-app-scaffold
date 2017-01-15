@@ -1,7 +1,6 @@
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../at-theme/at-theme.html">
+<link rel="import" href="../tangere/tangere.html">
 <link rel="import" href="../layout/layout.html">
-<link rel="import" href="../core-media-query/core-media-query.html">
+<link rel="import" href="../at-core-media-query/at-core-media-query.html">
 <link rel="import" href="../at-core-signals/at-core-signals.html">
 <link rel="import" href="../at-core-busy/at-core-busy.html">
 <link rel="import" href="../at-carbon-icon/at-carbon-icon.html">
@@ -138,9 +137,8 @@
       }
     </style>
 
-    <at-core-theme></at-core-theme>
     <at-core-signals on-before-navigate="beforeNavigate" on-navigate-back-status="navigateBackStatus" on-app-caption="appCaption" on-app-color="appColor"></at-core-signals>
-    <core-media-query id="mq" query="min-width: 1025px" on-query-matches-changed="mqChanged"></core-media-query>
+    <at-core-media-query id="mq" query="min-width: 1025px" on-query-matches-changed="mqChanged"></at-core-media-query>
 
     <div id="bar" class="bar">
       <div id="back" on-tap="backClick">
