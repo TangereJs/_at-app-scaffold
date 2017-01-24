@@ -68,19 +68,19 @@
         padding: 12px 8px 0px 8px;
         overflow: hidden;
       }
-            
+
       #caption {
         @apply(--layout-flex);
-        @apply(--layout-center-center);        
+        @apply(--layout-horizontal);
+        @apply(--layout-center);        
+      }
+
+      #caption > div {
+       
+        @apply(--at-app-title);
         min-width: 0;
-        font-size: 24px;
-        font-weight: 300;
-        line-height:24px;        
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
         width: 100%;
-        padding: 16px 16px 16px 4px;
+        padding: 0 16px 0 8px;
       }
 
       #back {        
@@ -145,7 +145,7 @@
         <at-carbon-icon icon="now:arrow-left"></at-carbon-icon>
       </div>
       <div id="caption">
-        {{caption}}
+        <div>{{caption}}</div>
       </div>
 
       <div id="menucontainer">
