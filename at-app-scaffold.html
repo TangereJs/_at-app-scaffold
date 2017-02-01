@@ -269,9 +269,19 @@
     beforeNavigate: function (e) {
       if (!this.desktop) this.sidebar = false; // close sidebar before view changes
     },
+
     appCaption: function (e) {      
       this.caption = e.detail;
       document.title = this.caption;
+
+
+      // hide loading animation, *todo* consider moving logic back to at-app-session to keep show/hide of animation in one element
+      if (!this._firstViewShown) {
+        var splash = document.getElementById("splash");
+        splash.classList.add("hide");
+        this._firstViewShown = true;
+      }
+
     },
     appColor: function (e) {
       var color = e.detail || "lightBlue";     
