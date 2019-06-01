@@ -1,7 +1,7 @@
 {
   "name": "at-app-scaffold",
   "private": true,
-  "version": "1.0.0.184",
+  "version": "1.0.0.185",
   "dependencies": {
     "tangere": "TangereJs/tangere#master"
   }
